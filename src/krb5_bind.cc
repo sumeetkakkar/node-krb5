@@ -61,8 +61,8 @@ class Worker_krb5_build_principal : public Napi::AsyncWorker {
 
 Napi::Value _krb5_build_principal(const Napi::CallbackInfo& info) {
   if (info.Length() < 5) {
-    throw Napi::TypeError::New(info.Env(),
-      "5 arguments expected : context, rlen, realm, user, callback");
+    Napi::TypeError::New(info.Env(),
+      "5 arguments expected : context, rlen, realm, user, callback").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -117,7 +117,7 @@ class Worker_krb5_cc_close : public Napi::AsyncWorker {
 
 Napi::Value _krb5_cc_close(const Napi::CallbackInfo& info) {
   if (info.Length() < 3) {
-    throw Napi::TypeError::New(info.Env(), "3 arguments expected");
+    Napi::TypeError::New(info.Env(), "3 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -165,7 +165,7 @@ class Worker_krb5_cc_default: public Napi::AsyncWorker {
 
 Napi::Value _krb5_cc_default(const Napi::CallbackInfo& info) {
   if (info.Length() < 2) {
-     throw Napi::TypeError::New(info.Env(), "2 argument expected");
+     Napi::TypeError::New(info.Env(), "2 argument expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -212,7 +212,7 @@ class Worker_krb5_cc_destroy : public Napi::AsyncWorker {
 
 Napi::Value _krb5_cc_destroy(const Napi::CallbackInfo& info) {
   if (info.Length() < 3) {
-    throw Napi::TypeError::New(info.Env(), "3 arguments expected");
+    Napi::TypeError::New(info.Env(), "3 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -232,7 +232,7 @@ Napi::Value _krb5_cc_destroy(const Napi::CallbackInfo& info) {
  */
 Napi::Value _krb5_cc_get_name_sync(const Napi::CallbackInfo& info) {
   if (info.Length() < 2) {
-     throw Napi::TypeError::New(info.Env(), "2 argument expected");
+     Napi::TypeError::New(info.Env(), "2 argument expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -249,7 +249,7 @@ Napi::Value _krb5_cc_get_name_sync(const Napi::CallbackInfo& info) {
  */
 Napi::Value _krb5_cc_initialize_sync(const Napi::CallbackInfo& info) {
   if (info.Length() < 3) {
-     throw Napi::TypeError::New(info.Env(), "3 argument expected");
+     Napi::TypeError::New(info.Env(), "3 argument expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -300,7 +300,7 @@ class Worker_krb5_cc_initialize : public Napi::AsyncWorker {
 
 Napi::Value _krb5_cc_initialize(const Napi::CallbackInfo& info) {
   if (info.Length() < 4) {
-    throw Napi::TypeError::New(info.Env(), "4 arguments expected");
+    Napi::TypeError::New(info.Env(), "4 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -359,7 +359,7 @@ class Worker_krb5_cc_resolve : public Napi::AsyncWorker {
 
 Napi::Value _krb5_cc_resolve(const Napi::CallbackInfo& info) {
   if (info.Length() < 3) {
-    throw Napi::TypeError::New(info.Env(), "3 arguments expected");
+    Napi::TypeError::New(info.Env(), "3 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -419,7 +419,7 @@ class Worker_krb5_cc_store_cred : public Napi::AsyncWorker {
 
 Napi::Value _krb5_cc_store_cred(const Napi::CallbackInfo& info) {
   if (info.Length() < 4) {
-    throw Napi::TypeError::New(info.Env(), "4 arguments expected");
+    Napi::TypeError::New(info.Env(), "4 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -462,7 +462,7 @@ class Worker_krb5_free_context : public Napi::AsyncWorker {
 
 Napi::Value _krb5_free_context(const Napi::CallbackInfo& info) {
   if (info.Length() < 2) {
-    throw Napi::TypeError::New(info.Env(), "2 arguments expected");
+    Napi::TypeError::New(info.Env(), "2 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -475,7 +475,7 @@ Napi::Value _krb5_free_context(const Napi::CallbackInfo& info) {
 
 Napi::Value _krb5_free_context_sync(const Napi::CallbackInfo& info) {
   if (info.Length() < 1) {
-    throw Napi::TypeError::New(info.Env(), "1 arguments expected");
+    Napi::TypeError::New(info.Env(), "1 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -490,7 +490,7 @@ Napi::Value _krb5_free_context_sync(const Napi::CallbackInfo& info) {
  */
 Napi::Value _krb5_free_principal_sync(const Napi::CallbackInfo& info) {
   if (info.Length() < 2) {
-    throw Napi::TypeError::New(info.Env(), "2 arguments expected");
+    Napi::TypeError::New(info.Env(), "2 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -505,7 +505,7 @@ Napi::Value _krb5_free_principal_sync(const Napi::CallbackInfo& info) {
  */
 Napi::Value _krb5_free_creds_sync(const Napi::CallbackInfo& info) {
   if (info.Length() < 2) {
-    throw Napi::TypeError::New(info.Env(), "2 arguments expected");
+    Napi::TypeError::New(info.Env(), "2 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -551,7 +551,7 @@ class Worker_krb5_get_default_realm : public Napi::AsyncWorker {
 
 Napi::Value _krb5_get_default_realm(const Napi::CallbackInfo& info) {
   if (info.Length() < 2) {
-     throw Napi::TypeError::New(info.Env(), "2 argument expected");
+     Napi::TypeError::New(info.Env(), "2 argument expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -569,7 +569,7 @@ Napi::Value _krb5_get_default_realm(const Napi::CallbackInfo& info) {
  */
 Napi::Value _krb5_get_error_message_sync(const Napi::CallbackInfo& info) {
   if (info.Length() < 2) {
-     throw Napi::TypeError::New(info.Env(), "2 argument expected");
+     Napi::TypeError::New(info.Env(), "2 argument expected").ThrowAsJavaScriptException();
   }
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
   krb5_error_code err_code = info[1].As<Napi::Number>();
@@ -602,7 +602,7 @@ class Worker_krb5_get_init_creds_password : public Napi::AsyncWorker {
       err = krb5_get_init_creds_password(krb_context, 
                                          &creds,
                                          krb_princ,
-                                         krb_password.c_str(),
+                                         (char *) krb_password.c_str(),
                                          nullptr,
                                          nullptr,
                                          0,
@@ -631,7 +631,7 @@ class Worker_krb5_get_init_creds_password : public Napi::AsyncWorker {
 
 Napi::Value _krb5_get_init_creds_password(const Napi::CallbackInfo& info) {
   if (info.Length() < 4) {
-    throw Napi::TypeError::New(info.Env(), "4 arguments expected");
+    Napi::TypeError::New(info.Env(), "4 arguments expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -681,10 +681,10 @@ class Worker_krb5_init_context : public Napi::AsyncWorker {
 
 Napi::Value _krb5_init_context(const Napi::CallbackInfo& info) {
   if (info.Length() < 1) {
-     throw Napi::TypeError::New(info.Env(), "1 argument expected");
+     Napi::TypeError::New(info.Env(), "1 argument expected").ThrowAsJavaScriptException();
   }
   if (!info[0].IsFunction()) {
-    throw Napi::TypeError::New(info.Env(), "Expected callback");
+    Napi::TypeError::New(info.Env(), "Expected callback").ThrowAsJavaScriptException();
   }
 
   Napi::Function callback = info[0].As<Napi::Function>();
@@ -732,7 +732,7 @@ class Worker_krb5_kt_resolve : public Napi::AsyncWorker {
 
 Napi::Value _krb5_kt_resolve(const Napi::CallbackInfo& info) {
   if (info.Length() < 3) {
-     throw Napi::TypeError::New(info.Env(), "3 argument expected");
+     Napi::TypeError::New(info.Env(), "3 argument expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();
@@ -776,7 +776,7 @@ class Worker_krb5_get_init_creds_keytab : public Napi::AsyncWorker {
                                        krb_kt,
                                        start_time,
                                        (krb_tkt_service == "") ? 
-                                         nullptr : krb_tkt_service.c_str(),
+                                         nullptr : (char *) krb_tkt_service.c_str(),
                                        krb_init_creds_opt);
     }
 
@@ -805,7 +805,7 @@ class Worker_krb5_get_init_creds_keytab : public Napi::AsyncWorker {
 
 Napi::Value _krb5_get_init_creds_keytab(const Napi::CallbackInfo& info) {
   if (info.Length() < 3) {
-     throw Napi::TypeError::New(info.Env(), "5 argument expected");
+     Napi::TypeError::New(info.Env(), "5 argument expected").ThrowAsJavaScriptException();
   }
 
   krb5_context krb_context = info[0].As<Napi::External<struct _krb5_context>>().Data();

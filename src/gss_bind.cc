@@ -124,7 +124,7 @@ class Worker_generate_spnego_token : public Napi::AsyncWorker {
 
 Napi::Value _generate_spnego_token(const Napi::CallbackInfo& info) {
   if (info.Length() < 4) {
-    throw Napi::TypeError::New(info.Env(), "4 arguments expected");
+    Napi::TypeError::New(info.Env(), "4 arguments expected").ThrowAsJavaScriptException();
   }
 
   std::string server = info[0].As<Napi::String>().Utf8Value();
